@@ -45,7 +45,7 @@ class home extends StatelessWidget {
                       }));
                     },
                     child: Text(
-                      "Open Form",
+                      "Login Form",
                       style: TextStyle(color: Colors.black),
                     )),
               ],

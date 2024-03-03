@@ -12,19 +12,19 @@ class _datepeakerState extends State<datepeaker> {
   TextEditingController daycontroller = new TextEditingController();
   TextEditingController yearcontroller = new TextEditingController();
   List<String> monthlist = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "Jun",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
   ];
   List<String> daylist = [
     '1',
@@ -102,24 +102,36 @@ class _datepeakerState extends State<datepeaker> {
         children: [
           Row(
             children: [
-              inputfield("Month", monthcontroller),
-              displaymounthlist
-                  ? selectionfield("Month", monthcontroller)
-                  : SizedBox(),
+              Column(
+                children: [
+                  inputfield("Month", monthcontroller),
+                  displaymounthlist
+                      ? selectionfield("Month", monthcontroller)
+                      : SizedBox(),
+                ],
+              ),
               SizedBox(
                 width: 10,
               ),
-              inputfield("Day", daycontroller),
-              displaydaylist
-                  ? selectionfield("Day", daycontroller)
-                  : SizedBox(),
+              Column(
+                children: [
+                  inputfield("Day", daycontroller),
+                  displaydaylist
+                      ? selectionfield("Day", daycontroller)
+                      : SizedBox(),
+                ],
+              ),
               SizedBox(
                 width: 10,
               ),
-              inputfield("Year", yearcontroller),
-              displayyearlist
-                  ? selectionfield("Year", yearcontroller)
-                  : SizedBox(),
+              Column(
+                children: [
+                  inputfield("Year", yearcontroller),
+                  displayyearlist
+                      ? selectionfield("Year", yearcontroller)
+                      : SizedBox(),
+                ],
+              ),
               SizedBox(
                 width: 10,
               ),
@@ -134,39 +146,47 @@ class _datepeakerState extends State<datepeaker> {
   Widget inputfield(String type, TextEditingController controller) {
     return Container(
       width: 95,
-      height: 35,
+      height: 40,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         color: Colors.white,
         borderRadius: BorderRadius.circular(6),
       ),
-      child: TextField(
-        style: TextStyle(fontSize: 12),
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-            hintText: type,
-            border: InputBorder.none,
-            suffixIcon: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    switch (type) {
-                      case "Month":
-                        displaymounthlist = !displaymounthlist;
-                        break;
-                      case "Day":
-                        displaydaylist = !displaydaylist;
-                        break;
-                      case "Year":
-                        displayyearlist = !displayyearlist;
-                        break;
-                    }
-                  });
-                },
-                child: Image.asset(
-                  'images/db.png',
-                  
-                ))),
-        controller: controller,
+      child: Padding(
+        padding: EdgeInsets.only(left: 5),
+        child: TextField(
+          textAlign: TextAlign.center,
+          textAlignVertical: TextAlignVertical.center,
+          
+          style: TextStyle(fontSize: 13,overflow: null),
+          
+          decoration: InputDecoration(
+            
+              hintText: type,
+              border: InputBorder.none,
+              suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      switch (type) {
+                        case "Month":
+                          displaymounthlist = !displaymounthlist;
+                          break;
+                        case "Day":
+                          displaydaylist = !displaydaylist;
+                          break;
+                        case "Year":
+                          displayyearlist = !displayyearlist;
+                          break;
+                      }
+                    });
+                  },
+                  child: Image.asset(
+                    'images/db1.png',
+        
+                    height: 35,
+                  ))),
+          controller: controller,
+        ),
       ),
     );
   }
@@ -174,7 +194,7 @@ class _datepeakerState extends State<datepeaker> {
   Widget selectionfield(String type, TextEditingController controller) {
     return Container(
       height: 200,
-      width: 130,
+      width: 95,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(9),
           color: Colors.white,
